@@ -13,7 +13,8 @@ button.textContent = 'Cocktail of the day !';
 const cocktail = document.createElement('div');
 const h3 = document.createElement('h3');
 const category = document.createElement('p');
-const ingredients = document.createElement('p');
+const ulIngredients = document.createElement('ul');
+const ingredients = document.createElement('li');
 const img = document.createElement('img');
 const description = document.createElement('p');
 const br = document.createElement('br');
@@ -24,7 +25,7 @@ root.appendChild(cocktail);
 
 cocktail.appendChild(h3);
 cocktail.appendChild(category);
-cocktail.appendChild(ingredients);
+cocktail.appendChild(ulIngredients);
 cocktail.appendChild(img);
 cocktail.appendChild(description);
 
@@ -89,8 +90,8 @@ const listIngredient = async () => {
 
 
         if (randomDrink[actualIngredient] != null) {
-            ingredients.textContent += randomDrink[actualIngredient] + " " + randomDrink[actualIngredientQMeasure] + "\n";
-            console.log(i + " " + ingredients.textContent);
+            ingredients.textContent += randomDrink[actualIngredient] + " - " + randomDrink[actualIngredientQMeasure];
+            ulIngredients.appendChild(ingredients);
         }
         else {
             break
