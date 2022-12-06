@@ -14,7 +14,6 @@ const cocktail = document.createElement('div');
 const h3 = document.createElement('h3');
 const category = document.createElement('p');
 const ulIngredients = document.createElement('ul');
-const ingredients = document.createElement('li');
 const img = document.createElement('img');
 const description = document.createElement('p');
 const br = document.createElement('br');
@@ -77,26 +76,22 @@ button.addEventListener('click', async () => {
 })
 
 const listIngredient = async () => {
-    for (let i = 0; i < 15; i++) {
+    for (let i = 1; i <= 15; i++) {
         const res = await fetchRandomCocktail();
         const randomDrink = res.drinks[0];
-        const value = i + 1;
+
+        const actualIngredient = randomDrink[`strIngredient${i}`];
+        const actualIngredientMeasure = randomDrink[`strMeasure${i}`];
 
 
-        const actualIngredient = 'strIngredient' + value;
-        const actualIngredientQMeasure = 'strMeasure' + value;
-        console.log(actualIngredient);
-        console.log(randomDrink[actualIngredient]);
-
-
-        if (randomDrink[actualIngredient] != null) {
-            ingredients.textContent += randomDrink[actualIngredient] + " - " + randomDrink[actualIngredientQMeasure];
+        if (actualIngredient) {
+            const ingredients = document.createElement('li');
+            ingredients.textContent = `${actualIngredient} - ${actualIngredientMeasure}`;
             ulIngredients.appendChild(ingredients);
         }
         else {
             break
         }
-
     }
 }
 
