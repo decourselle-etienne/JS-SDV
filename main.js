@@ -1,11 +1,5 @@
 const root = document.querySelector('#root');
 
-/* commentaire sur
-plusieurs lignes */
-
-// commantaire sur une ligne
-
-// Ctrl + / pour commenter toutes les lignes sélectionnées
 
 const button = document.createElement('button');
 button.textContent = 'Cocktail of the day !';
