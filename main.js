@@ -15,7 +15,7 @@ const descriptionParagraph = document.createElement('p');
 root.appendChild(button);
 root.appendChild(cocktailDiv);
 
-cocktailDiv.appendChild(h3);
+cocktailDiv.appendChild(h1);
 cocktailDiv.appendChild(categoryParagraph);
 cocktailDiv.appendChild(ulIngredients);
 cocktailDiv.appendChild(cocktailImg);
