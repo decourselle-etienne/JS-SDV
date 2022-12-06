@@ -10,23 +10,22 @@ plusieurs lignes */
 const button = document.createElement('button');
 button.textContent = 'Cocktail of the day !';
 
-const cocktail = document.createElement('div');
+const cocktailDiv = document.createElement('div');
 const h3 = document.createElement('h3');
-const category = document.createElement('p');
+const categoryParagraph = document.createElement('p');
 const ulIngredients = document.createElement('ul');
 const img = document.createElement('img');
 const description = document.createElement('p');
-const br = document.createElement('br');
 
 
 root.appendChild(button);
 root.appendChild(cocktail);
 
-cocktail.appendChild(h3);
-cocktail.appendChild(category);
-cocktail.appendChild(ulIngredients);
-cocktail.appendChild(img);
-cocktail.appendChild(description);
+cocktailDiv.appendChild(h3);
+cocktailDiv.appendChild(categoryParagraph);
+cocktailDiv.appendChild(ulIngredients);
+cocktailDiv.appendChild(img);
+cocktailDiv.appendChild(description);
 
 
 /*
@@ -65,10 +64,10 @@ button.addEventListener('click', async () => {
 
     const randomDrink = response.drinks[0];
 
-    cocktail.setAttribute('id', 'cocktail');
+    cocktailDiv.setAttribute('id', 'cocktail');
 
     h3.textContent = randomDrink.strDrink;
-    category.textContent = randomDrink.strCategory;
+    categoryParagraph.textContent = randomDrink.strCategory;
 
     img.setAttribute('src', randomDrink.strDrinkThumb)
     description.textContent = randomDrink.strInstructions;
