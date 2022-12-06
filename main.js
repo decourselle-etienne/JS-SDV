@@ -4,22 +4,18 @@ const root = document.querySelector('#root');
 const randomCocktailButton = document.createElement('button');
 randomCocktailButton.textContent = 'Cocktail of the day !';
 
-const cocktailDiv = document.createElement('div');
-const cocktailH1 = document.createElement('h1');
-const categoryParagraph = document.createElement('p');
+// const cocktailDiv = document.createElement('div');
+// const cocktailH1 = document.createElement('h1');
+// const categoryParagraph = document.createElement('p');
 const ulIngredients = document.createElement('ul');
-const cocktailImg = document.createElement('img');
-const descriptionParagraph = document.createElement('p');
+// const cocktailImg = document.createElement('img');
+// const descriptionParagraph = document.createElement('p');
 
 
 root.appendChild(randomCocktailButton);
-root.appendChild(cocktailDiv);
 
-cocktailDiv.appendChild(cocktailH1);
-cocktailDiv.appendChild(categoryParagraph);
-cocktailDiv.appendChild(ulIngredients);
-cocktailDiv.appendChild(cocktailImg);
-cocktailDiv.appendChild(descriptionParagraph);
+
+
 
 
 /*
@@ -46,47 +42,89 @@ randomCocktailButton.addEventListener('click', () => {
         });
 });
 */
+const cleanContainer = (element) => {
+    element.textContent = "";
+}
 
 const fetchRandomCocktail = async () => {
     const responseCocktail = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
     return await responseCocktail.json();
 }
 
-randomCocktailButton.addEventListener('click', async () => {
-    const response = await fetchRandomCocktail();
-    await listIngredient();
 
-    const randomDrink = response.drinks[0];
+const collectData = async () => {
+    const res = await fetchRandomCocktail();
+    const randomDrink = res.drinks[0];
+    return randomDrink;
+}
 
-    cocktailDiv.setAttribute('id', 'cocktail');
 
-    cocktailH1.textContent = randomDrink.strDrink;
-    categoryParagraph.textContent = randomDrink.strCategory;
+const isIngredient = (ingredient, measure) => {
+    if (ingredient) {
+        const liIngredients = document.createElement('li');
+        liIngredients.textContent = `${ingredient} - ${measure}`;
+        ulIngredients.appendChild(liIngredients);
+    }
+    else { }
+}
 
-    cocktailImg.setAttribute('src', randomDrink.strDrinkThumb)
-    descriptionParagraph.textContent = randomDrink.strInstructions;
-
-})
 
 const listIngredient = async () => {
-    ulIngredients.textContent = "";
     for (let i = 1; i <= 15; i++) {
-        const res = await fetchRandomCocktail();
-        const randomDrink = res.drinks[0];
+        const drink = await collectData();
+        const actualIngredient = drink[`strIngredient${i}`];
+        const actualIngredientMeasure = drink[`strMeasure${i}`];
+        isIngredient(actualIngredient, actualIngredientMeasure);
+    }
+}
 
-        const actualIngredient = randomDrink[`strIngredient${i}`];
-        const actualIngredientMeasure = randomDrink[`strMeasure${i}`];
+const addElement = async (element, injectionType, value, parameter) => {
 
+    const newElement = document.createElement(element);
 
-        if (actualIngredient) {
-            const liIngredients = document.createElement('li');
-            liIngredients.textContent = `${actualIngredient} - ${actualIngredientMeasure}`;
-            ulIngredients.appendChild(liIngredients);
-        }
-        else {
-            break
-        }
+    if (injectionType == 'setAttribute') {
+        newElement.setAttribute(parameter, value);
+    }
+    if (injectionType == 'textContent') {
+        newElement.textContent = value;
     }
 }
 
 
+const showElement = async () => {
+    const drink = await collectData();
+
+    const cocktailH1 = await addElement('h1', 'textContent', drink.strDrink);
+    const categoryParagraph = await addElement('p', 'textContent', drink.strCategory);
+    const cocktailImg = await addElement('img', 'setAttribute', drink.strDrinkThumb, 'src');
+    const descriptionParagraph = await addElement('p', 'textContent', drink.strInstructions);
+}
+
+
+randomCocktailButton.addEventListener('click', async () => {
+    cleanContainer(ulIngredients);
+    const cocktailDiv = await addElement('div', 'setAttribute', 'cocktail', 'id')
+    await listIngredient();
+    showElement();
+
+    appendChildToElement(cocktailDiv, cocktailH1);
+    appendChildToElement(cocktailDiv, categoryParagraph);
+    appendChildToElement(cocktailDiv, ulIngredients);
+    appendChildToElement(cocktailDiv, cocktailImg);
+    appendChildToElement(cocktailDiv, descriptionParagraph);
+
+    root.appendChild(div);
+
+})
+
+const appendChildToElement = (cocktailDiv, element) => {
+    cocktailDiv.appendChild(element);
+}
+
+
+// const cocktailDiv = document.createElement('div');
+// const cocktailH1 = document.createElement('h1');
+// const categoryParagraph = document.createElement('p');
+// const ulIngredients = document.createElement('ul');
+// const cocktailImg = document.createElement('img');
+// const descriptionParagraph = document.createElement('p');

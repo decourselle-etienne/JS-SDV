@@ -4,7 +4,7 @@ body {
 }
 
 #root {
-    width: 30%;
+    width: 50%;
     margin: auto;
 }
 
@@ -23,4 +23,19 @@ h1 {
 img {
     width: 90%;
     height: auto;
+}
+
+button {
+    height: 50px;
+    width: 150px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(53deg, rgb(40, 22, 104) 10%, rgb(8, 221, 193) 100%);
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+button:active {
+    transform: scale(0.9);
 }
