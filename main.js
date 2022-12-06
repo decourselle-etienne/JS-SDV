@@ -23,7 +23,7 @@ cocktailDiv.appendChild(descriptionParagraph);
 
 
 /*
-button.addEventListener('click', () => {
+randomCocktailButton.addEventListener('click', () => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
         .then((response) => {
             return response.json()
@@ -52,7 +52,7 @@ const fetchRandomCocktail = async () => {
     return await responseCocktail.json();
 }
 
-button.addEventListener('click', async () => {
+randomCocktailButton.addEventListener('click', async () => {
     const response = await fetchRandomCocktail();
     await listIngredient();
 
@@ -69,6 +69,7 @@ button.addEventListener('click', async () => {
 })
 
 const listIngredient = async () => {
+    ulIngredients.textContent = "";
     for (let i = 1; i <= 15; i++) {
         const res = await fetchRandomCocktail();
         const randomDrink = res.drinks[0];
