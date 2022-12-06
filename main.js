@@ -1,8 +1,8 @@
 const root = document.querySelector('#root');
 
 
-const button = document.createElement('button');
-button.textContent = 'Cocktail of the day !';
+const randomCocktailButton = document.createElement('button');
+randomCocktailButton.textContent = 'Cocktail of the day !';
 
 const cocktailDiv = document.createElement('div');
 const h1 = document.createElement('h1');
@@ -12,7 +12,7 @@ const cocktailImg = document.createElement('img');
 const descriptionParagraph = document.createElement('p');
 
 
-root.appendChild(button);
+root.appendChild(randomCocktailButton);
 root.appendChild(cocktailDiv);
 
 cocktailDiv.appendChild(h1);
