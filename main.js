@@ -5,7 +5,7 @@ const randomCocktailButton = document.createElement('button');
 randomCocktailButton.textContent = 'Cocktail of the day !';
 
 const cocktailDiv = document.createElement('div');
-const h1 = document.createElement('h1');
+const cocktailH1 = document.createElement('h1');
 const categoryParagraph = document.createElement('p');
 const ulIngredients = document.createElement('ul');
 const cocktailImg = document.createElement('img');
@@ -15,7 +15,7 @@ const descriptionParagraph = document.createElement('p');
 root.appendChild(randomCocktailButton);
 root.appendChild(cocktailDiv);
 
-cocktailDiv.appendChild(h1);
+cocktailDiv.appendChild(cocktailH1);
 cocktailDiv.appendChild(categoryParagraph);
 cocktailDiv.appendChild(ulIngredients);
 cocktailDiv.appendChild(cocktailImg);
@@ -60,7 +60,7 @@ button.addEventListener('click', async () => {
 
     cocktailDiv.setAttribute('id', 'cocktail');
 
-    h3.textContent = randomDrink.strDrink;
+    cocktailH1.textContent = randomDrink.strDrink;
     categoryParagraph.textContent = randomDrink.strCategory;
 
     cocktailImg.setAttribute('src', randomDrink.strDrinkThumb)
