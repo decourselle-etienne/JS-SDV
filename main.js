@@ -5,11 +5,11 @@ const button = document.createElement('button');
 button.textContent = 'Cocktail of the day !';
 
 const cocktailDiv = document.createElement('div');
-const h3 = document.createElement('h3');
+const h1 = document.createElement('h1');
 const categoryParagraph = document.createElement('p');
 const ulIngredients = document.createElement('ul');
-const img = document.createElement('img');
-const description = document.createElement('p');
+const cocktailImg = document.createElement('img');
+const descriptionParagraph = document.createElement('p');
 
 
 root.appendChild(button);
@@ -18,8 +18,8 @@ root.appendChild(cocktailDiv);
 cocktailDiv.appendChild(h3);
 cocktailDiv.appendChild(categoryParagraph);
 cocktailDiv.appendChild(ulIngredients);
-cocktailDiv.appendChild(img);
-cocktailDiv.appendChild(description);
+cocktailDiv.appendChild(cocktailImg);
+cocktailDiv.appendChild(descriptionParagraph);
 
 
 /*
@@ -63,8 +63,8 @@ button.addEventListener('click', async () => {
     h3.textContent = randomDrink.strDrink;
     categoryParagraph.textContent = randomDrink.strCategory;
 
-    img.setAttribute('src', randomDrink.strDrinkThumb)
-    description.textContent = randomDrink.strInstructions;
+    cocktailImg.setAttribute('src', randomDrink.strDrinkThumb)
+    descriptionParagraph.textContent = randomDrink.strInstructions;
 
 })
 
@@ -78,9 +78,9 @@ const listIngredient = async () => {
 
 
         if (actualIngredient) {
-            const ingredients = document.createElement('li');
-            ingredients.textContent = `${actualIngredient} - ${actualIngredientMeasure}`;
-            ulIngredients.appendChild(ingredients);
+            const liIngredients = document.createElement('li');
+            liIngredients.textContent = `${actualIngredient} - ${actualIngredientMeasure}`;
+            ulIngredients.appendChild(liIngredients);
         }
         else {
             break
