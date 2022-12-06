@@ -19,7 +19,7 @@ const description = document.createElement('p');
 
 
 root.appendChild(button);
-root.appendChild(cocktail);
+root.appendChild(cocktailDiv);
 
 cocktailDiv.appendChild(h3);
 cocktailDiv.appendChild(categoryParagraph);
