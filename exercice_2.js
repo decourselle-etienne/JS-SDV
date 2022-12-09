@@ -28,24 +28,24 @@ class CocktailShow {
         for (let i = 0; i < 25; i++) {
 
             let ingredientsLister = new IngredientsLister;
-            let el = new returnElement
+            let elementCreator = new ElementCreator
 
             const cocktailDiv = document.createElement('div');
             cocktailDiv.setAttribute('class', 'cocktail');
 
             ingredientsLister.listIngredient(allDrinks[i], cocktailDiv);
 
-            el.addElement('h1', 'textContent', allDrinks[i].strDrink, cocktailDiv);
-            el.addElement('p', 'textContent', allDrinks[i].strCategory, cocktailDiv);
-            el.addElement('img', 'setAttribute', allDrinks[i].strDrinkThumb, cocktailDiv, 'src');
-            el.addElement('p', 'textContent', allDrinks[i].strInstructions, cocktailDiv);
+            elementCreator.addElement('h1', 'textContent', allDrinks[i].strDrink, cocktailDiv);
+            elementCreator.addElement('p', 'textContent', allDrinks[i].strCategory, cocktailDiv);
+            elementCreator.addElement('img', 'setAttribute', allDrinks[i].strDrinkThumb, cocktailDiv, 'src');
+            elementCreator.addElement('p', 'textContent', allDrinks[i].strInstructions, cocktailDiv);
 
             root.appendChild(cocktailDiv);
         }
     }
 }
 
-class returnElement {
+class ElementCreator {
 
     appendChildToElement = (parentElement, element) => {
         parentElement.appendChild(element);
