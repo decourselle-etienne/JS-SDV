@@ -32,10 +32,10 @@ class CocktailShow {
 
             const cocktailDiv = document.createElement('div');
             cocktailDiv.setAttribute('class', 'cocktail');
+            elementCreator.addElement('h1', 'textContent', allDrinks[i].strDrink, cocktailDiv);
 
             ingredientsLister.listIngredient(allDrinks[i], cocktailDiv);
 
-            elementCreator.addElement('h1', 'textContent', allDrinks[i].strDrink, cocktailDiv);
             elementCreator.addElement('p', 'textContent', allDrinks[i].strCategory, cocktailDiv);
             elementCreator.addElement('img', 'setAttribute', allDrinks[i].strDrinkThumb, cocktailDiv, 'src');
             elementCreator.addElement('p', 'textContent', allDrinks[i].strInstructions, cocktailDiv);
@@ -91,14 +91,13 @@ class IngredientsLister {
         }
     }
 
-    isIngredient = (ingredient, measure, ul, cocktailDiv) => {
+    isIngredient(ingredient, measure, ul, cocktailDiv) {
         if (ingredient) {
             const liIngredients = document.createElement('li');
             liIngredients.textContent = `${ingredient} - ${measure}`;
             ul.appendChild(liIngredients);
             cocktailDiv.appendChild(ul);
         }
-        else { }
     }
 }
 
