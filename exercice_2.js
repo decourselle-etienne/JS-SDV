@@ -10,32 +10,40 @@ root.appendChild(allCocktailButton);
 
 allCocktailButton.addEventListener('click', async () => {
 
-    let clean = new cleanCocktails;
-    let ingredients = new returnIngredients;
-    let el = new returnElement;
-    let fetchUrl = new returnFetch;
+    let cocktailCleaner = new CocktailCleaner;
+    let cocktailFetcher = new CocktailFetcher;
+    let cocktailShow = new CocktailShow;
 
-    clean.cleanContainer(cocktailDiv);
+    cocktailCleaner.cleanContainer(cocktailDiv);
 
-    const allDrinks = await fetchUrl.collectData('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+    const allDrinks = await cocktailFetcher.collectData('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
 
-    console.log(allDrinks, 'allDrinks');
+    cocktailShow.showCocktails(allDrinks);
 
-
-    for (let i = 0; i < 25; i++) {
-        const cocktailDiv = document.createElement('div');
-        cocktailDiv.setAttribute('class', 'cocktail');
-
-        ingredients.listIngredient(allDrinks[i], cocktailDiv);
-
-        el.addElement('h1', 'textContent', allDrinks[i].strDrink, cocktailDiv);
-        el.addElement('p', 'textContent', allDrinks[i].strCategory, cocktailDiv);
-        el.addElement('img', 'setAttribute', allDrinks[i].strDrinkThumb, cocktailDiv, 'src');
-        el.addElement('p', 'textContent', allDrinks[i].strInstructions, cocktailDiv);
-
-        root.appendChild(cocktailDiv);
-    }
 })
+
+
+class CocktailShow {
+    async showCocktails(allDrinks) {
+        for (let i = 0; i < 25; i++) {
+
+            let ingredientsLister = new IngredientsLister;
+            let el = new returnElement
+
+            const cocktailDiv = document.createElement('div');
+            cocktailDiv.setAttribute('class', 'cocktail');
+
+            ingredientsLister.listIngredient(allDrinks[i], cocktailDiv);
+
+            el.addElement('h1', 'textContent', allDrinks[i].strDrink, cocktailDiv);
+            el.addElement('p', 'textContent', allDrinks[i].strCategory, cocktailDiv);
+            el.addElement('img', 'setAttribute', allDrinks[i].strDrinkThumb, cocktailDiv, 'src');
+            el.addElement('p', 'textContent', allDrinks[i].strInstructions, cocktailDiv);
+
+            root.appendChild(cocktailDiv);
+        }
+    }
+}
 
 class returnElement {
 
@@ -59,7 +67,7 @@ class returnElement {
 }
 
 
-class returnFetch {
+class CocktailFetcher {
     async fetchAllCocktail(link) {
         console.log(link);
         const results = await fetch(link);
@@ -73,7 +81,7 @@ class returnFetch {
     }
 }
 
-class returnIngredients {
+class IngredientsLister {
     async listIngredient(allDrinks, cocktailDiv) {
         const ulIngredients = document.createElement('ul');
         for (let i = 1; i <= 15; i++) {
@@ -94,7 +102,7 @@ class returnIngredients {
     }
 }
 
-class cleanCocktails {
+class CocktailCleaner {
     cleanContainer(element) {
         element.textContent = "";
     }
